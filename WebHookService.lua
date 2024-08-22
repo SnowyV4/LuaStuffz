@@ -156,3 +156,4 @@ function core.ConvertColor(color:Color3)
 	}))
 end
 
+return core
