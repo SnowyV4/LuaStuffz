@@ -140,10 +140,12 @@ function core.new(webhookurl:string)
 			data["tts"] = options.tts
 		end
 		local newdata = httpService:JSONEncode(data)
-		local status,res = httpService:PostAsync(webhookurl, newdata)
-		if (not status) then
-			error(res)
-		end
+		local response = request({
+			Url = webhookurl,
+			Method = "POST",
+        	Headers = {["Content-Type"] = "application/json"},
+        	Body = newdata
+		})
 	end
 	return functions
 end
@@ -154,4 +156,3 @@ function core.ConvertColor(color:Color3)
 	}))
 end
 
-return core
