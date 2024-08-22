@@ -59,7 +59,7 @@ function core.EmbedBuilder(options:EmbedObject?)
 		template = options
 	end
 	return {
-		setTitle = function(title:string)
+		setTitle = function(title)
 			template["title"] = title
 		end,
 		setDescription = function(description:string)
@@ -114,43 +114,39 @@ function core.EmbedBuilder(options:EmbedObject?)
 	}
 end
 
-function core.new(webhookurl:string)
-	local functions = {}
-	function functions:Send(options:SendOptions)
-		if (not options.content and not options.embeds) then
-			error("Atleast one option is required.")
-			return false
-		end
-		local data = {}
-		if options.content then
-			data["content"] = options.content;
-		else
-			data["content"] = ""
-		end
-		if options.embeds then
-			data["embeds"] = {}
-			for i,v in pairs(options.embeds) do
-				table.insert(data["embeds"],v.object)
-			end
-		end
-		if options.username then
-			data["username"] = options.username
-		end
-		if options.tts then
-			data["tts"] = options.tts
-		end
-		local newdata = httpService:JSONEncode(data)
-		local response = request({
-			Url = webhookurl,
-			Method = "POST",
-        	Headers = {["Content-Type"] = "application/json"},
-        	Body = newdata
-		})
+function core:Send(webhookurl:string, options:SendOptions)
+	if (not options.content and not options.embeds) then
+		error("Atleast one option is required.")
+		return false
 	end
-	return functions
+	local data = {}
+	if options.content then
+		data["content"] = options.content;
+	else
+		data["content"] = ""
+	end
+	if options.embeds then
+		data["embeds"] = {}
+		for i,v in pairs(options.embeds) do
+			table.insert(data["embeds"],v.object)
+		end
+	end
+	if options.username then
+		data["username"] = options.username
+	end
+	if options.tts then
+		data["tts"] = options.tts
+	end
+	local newdata = httpService:JSONEncode(data)
+	local response = request({
+		Url = webhookurl,
+		Method = "POST",
+		Headers = {["Content-Type"] = "application/json"},
+		Body = newdata
+	})
 end
 
-function core.ConvertColor(color:Color3)
+function core.ConvertColor(color)
 	return tonumber(RGBToHex({
 		color.R; color.G; color.B;
 	}))
