@@ -1,4 +1,4 @@
-{
+return {
     ["Bat Dragon"] = {
         name = "Bat Dragon",
         d = "322.0",
